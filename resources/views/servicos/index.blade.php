@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('title', 'Lista de Serviços')
@@ -8,6 +7,9 @@
 @stop
 
 @section('content')
+    @if(session('mensagem'))
+        <div class="alert alert-success">{{ session('mensagem') }}</div>
+    @endif
     <table class="table">
         <thead>
         <tr>
@@ -18,18 +20,18 @@
         </tr>
         </thead>
         <tbody>
-       @forelse($servicos as $servico)
-           <tr>
-               <th>{{$servico->id}}</th>
-               <td>{{$servico->nome}}</td>
-               <td><a class="btn btn-primary" href="{{ route('servicos.edit', $servico) }}">Atualizar</a></td>
-           </tr>
-       @empty
-        <tr>
-            <th></th>
-            <th>Nenhum registro foi encontrado</th>
-        </tr>
-       @endforelse
+        @forelse($servicos as $servico)
+            <tr>
+                <th>{{$servico->id}}</th>
+                <td>{{$servico->nome}}</td>
+                <td><a class="btn btn-primary" href="{{ route('servicos.edit', $servico) }}">Atualizar</a></td>
+            </tr>
+        @empty
+            <tr>
+                <th></th>
+                <th>Nenhum registro foi encontrado</th>
+            </tr>
+        @endforelse
 
         </tbody>
     </table>

@@ -25,7 +25,7 @@ class ServicoController extends Controller
     {
         $dados = $request->except('_token');
         $retorno = Servico::create($dados);
-        return redirect()->route('servicos.index');
+        return redirect()->route('servicos.index')->with('mensagem', 'Serviço criado com sucesso');
     }
 
     public function edit(int $id)
@@ -39,6 +39,6 @@ class ServicoController extends Controller
         $dados = $request->except(['_token', '_method']);
         $servico = Servico::findOrFail($id);
         $servico->update($dados);
-        return redirect()->route('servicos.index');
+        return redirect()->route('servicos.index')->with('mensagem', 'Serviço atualizado com sucesso');;
     }
 }
